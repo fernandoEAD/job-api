@@ -1,10 +1,23 @@
 package com.fernando.job.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class Pessoa {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Pessoa implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private double cpf;
@@ -15,6 +28,8 @@ public class Pessoa {
 	private String funçao;
 	private String competencia;
 	
+	@ManyToOne
+	@JoinColumn(name = "cadastro_id")
 	private Cadastro cadastro;
 
 	public Pessoa() {
