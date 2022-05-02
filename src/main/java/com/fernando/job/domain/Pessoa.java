@@ -1,7 +1,7 @@
 package com.fernando.job.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -20,10 +20,10 @@ public class Pessoa implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private double cpf;
-	private Date data;
+	private String cpf;
+	private LocalDate data;
 	private String email;
-	private double telefone;
+	private String telefone;
 	private String escolaridade;
 	private String funçao;
 	private String competencia;
@@ -36,7 +36,7 @@ public class Pessoa implements Serializable{
 		super();
 	}
 
-	public Pessoa(Integer id, String nome, double cpf, Date data, String email, double telefone, String escolaridade,
+	public Pessoa(Integer id, String nome, String cpf, LocalDate data, String email, String telefone, String escolaridade,
 			String funçao, String competencia, Cadastro cadastro) {
 		super();
 		this.id = id;
@@ -67,19 +67,19 @@ public class Pessoa implements Serializable{
 		this.nome = nome;
 	}
 
-	public double getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(double cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
-	public Date getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 
@@ -91,11 +91,11 @@ public class Pessoa implements Serializable{
 		this.email = email;
 	}
 
-	public double getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(double telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
