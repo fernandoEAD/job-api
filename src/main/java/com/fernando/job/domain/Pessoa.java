@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Pessoa implements Serializable{
 	
@@ -28,6 +30,7 @@ public class Pessoa implements Serializable{
 	private String funçao;
 	private String competencia;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "cadastro_id")
 	private Cadastro cadastro;
