@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fernando.job.domain.Cadastro;
+import com.fernando.job.dtos.CadastroDTO;
 import com.fernando.job.repositories.CadastroRepository;
 import com.fernando.job.service.exceptions.ObjectNotFoundException;
 
@@ -28,6 +29,13 @@ public class CadastroService {
 	
 	public Cadastro create(Cadastro obj) {
 		obj.setId(null);
+		return repository.save(obj);
+	}
+
+	public Cadastro update(Integer id, CadastroDTO objDto) {
+		Cadastro obj = findById(id);
+		obj.setNome(objDto.getNome());
+		obj.setJob(objDto.getJob());
 		return repository.save(obj);
 	}
 }

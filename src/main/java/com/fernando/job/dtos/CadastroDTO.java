@@ -18,7 +18,7 @@ public class CadastroDTO implements Serializable {
 	public CadastroDTO(Cadastro obj) {
 		super();
 		this.id = obj.getId();
-		this.nome = obj.getName();
+		this.nome = obj.getNome();
 		this.job = obj.getJob();
 	}
 	public Integer getId() {

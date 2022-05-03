@@ -21,7 +21,7 @@ public class Cadastro implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String name;
+	private String nome;
 	private String job;
 	
 	@OneToMany(mappedBy = "cadastro")
@@ -31,10 +31,10 @@ public class Cadastro implements Serializable{
 		super();
 	}
 
-	public Cadastro(Integer id, String name, String job) {
+	public Cadastro(Integer id, String nome, String job) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.nome = nome;
 		this.job = job;
 	}
 
@@ -46,12 +46,12 @@ public class Cadastro implements Serializable{
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getJob() {
