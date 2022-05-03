@@ -38,4 +38,9 @@ public class CadastroService {
 		obj.setJob(objDto.getJob());
 		return repository.save(obj);
 	}
+
+	public void delete(Integer id) {
+		findById(id);
+		repository.deleteById(id);
+	}
 }
