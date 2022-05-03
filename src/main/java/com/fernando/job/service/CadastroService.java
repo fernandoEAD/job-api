@@ -25,4 +25,9 @@ public class CadastroService {
 	public List<Cadastro> findAll() {
 		return repository.findAll();
 	}
+	
+	public Cadastro create(Cadastro obj) {
+		obj.setId(null);
+		return repository.save(obj);
+	}
 }
