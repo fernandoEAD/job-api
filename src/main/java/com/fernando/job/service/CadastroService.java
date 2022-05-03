@@ -7,15 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.fernando.job.domain.Cadastro;
 import com.fernando.job.repositories.CadastroRepository;
+import com.fernando.job.service.exceptions.ObjectNotFoundException;
 
 @Service
 public class CadastroService {
-	
+
 	@Autowired
 	private CadastroRepository repository;
-	
+
 	public Cadastro findById(Integer id) {
 		Optional<Cadastro> obj = repository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id:" + id + ", Tipo: " + Cadastro.class.getName()));
 	}
 }
