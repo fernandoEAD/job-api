@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.fernando.job.domain.Cadastro;
@@ -41,6 +42,11 @@ public class CadastroService {
 
 	public void delete(Integer id) {
 		findById(id);
-		repository.deleteById(id);
+		try {
+			repository.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new com.fernando.job.service.exceptions.DataIntegrityViolationException(
+					"Cadastro não pode ser deletado! Possui pessoas associadas.");
+		}
 	}
 }
