@@ -10,10 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name="job_pessoa")
 public class Pessoa implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -27,7 +29,7 @@ public class Pessoa implements Serializable{
 	private String email;
 	private String telefone;
 	private String escolaridade;
-	private String funçao;
+	private String funcao;
 	private String competencia;
 	
 	@JsonIgnore
@@ -40,7 +42,7 @@ public class Pessoa implements Serializable{
 	}
 
 	public Pessoa(Integer id, String nome, String cpf, LocalDate data, String email, String telefone, String escolaridade,
-			String funçao, String competencia, Cadastro cadastro) {
+			String funcao, String competencia, Cadastro cadastro) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -49,7 +51,7 @@ public class Pessoa implements Serializable{
 		this.email = email;
 		this.telefone = telefone;
 		this.escolaridade = escolaridade;
-		this.funçao = funçao;
+		this.funcao = funcao;
 		this.competencia = competencia;
 		this.cadastro = cadastro;
 	}
@@ -110,12 +112,12 @@ public class Pessoa implements Serializable{
 		this.escolaridade = escolaridade;
 	}
 
-	public String getFunçao() {
-		return funçao;
+	public String getFuncao() {
+		return funcao;
 	}
 
-	public void setFunçao(String funçao) {
-		this.funçao = funçao;
+	public void setFuncao(String funcao) {
+		this.funcao = funcao;
 	}
 
 	public String getCompetencia() {
