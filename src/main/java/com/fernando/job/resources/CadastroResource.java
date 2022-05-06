@@ -4,8 +4,11 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +23,7 @@ import com.fernando.job.domain.Cadastro;
 import com.fernando.job.dtos.CadastroDTO;
 import com.fernando.job.service.CadastroService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/cadastros")
 public class CadastroResource {
@@ -41,7 +45,7 @@ public class CadastroResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Cadastro> create(@RequestBody Cadastro obj) {
+	public ResponseEntity<Cadastro> create(@Valid @RequestBody Cadastro obj) {
 		obj = service.create(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
