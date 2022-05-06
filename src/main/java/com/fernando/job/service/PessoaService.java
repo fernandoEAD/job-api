@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fernando.job.domain.Cadastro;
 import com.fernando.job.domain.Pessoa;
 import com.fernando.job.repositories.PessoaRepository;
 import com.fernando.job.service.exceptions.ObjectNotFoundException;
@@ -46,5 +47,17 @@ public class PessoaService {
 		newObj.setFuncao(obj.getFuncao());
 		newObj.setCompetencia(obj.getCompetencia());
 		
+	}
+
+	public Pessoa create(Integer id_cad, Pessoa obj) {
+		obj.setId(null);
+		Cadastro cad = cadastroService.findById(id_cad);
+		obj.setCadastro(cad);
+		return repository.save(obj);
+	}
+
+	public void delete(Integer id) {
+		Pessoa obj = findById(id);
+		repository.delete(obj);
 	}
 }
