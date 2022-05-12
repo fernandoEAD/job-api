@@ -36,7 +36,7 @@ public class CadastroService {
 	public Cadastro update(Integer id, CadastroDTO objDto) {
 		Cadastro obj = findById(id);
 		obj.setNome(objDto.getNome());
-		obj.setJob(objDto.getJob());
+		obj.setFuncao(objDto.getFuncao());
 		return repository.save(obj);
 	}
 

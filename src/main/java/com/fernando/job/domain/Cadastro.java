@@ -29,9 +29,9 @@ public class Cadastro implements Serializable{
 	@Length(min = 3, max = 100, message = "O campo NOME deve ter entre 3 e 100 caracteres")
 	private String nome;
 	
-	@NotEmpty(message = "Campo JOB é requerido")
-	@Length(min = 3, max = 200, message = "O campo NOME deve ter entre 3 e 200 caracteres")
-	private String job;
+	@NotEmpty(message = "Campo FUNÇÃO é requerido")
+	@Length(min = 3, max = 200, message = "O campo FUNÇÃO deve ter entre 3 e 200 caracteres")
+	private String funcao;
 	
 	@OneToMany(mappedBy = "cadastro")
 	private List<Pessoa> pessoas = new ArrayList<>();
@@ -40,11 +40,11 @@ public class Cadastro implements Serializable{
 		super();
 	}
 
-	public Cadastro(Integer id, String nome, String job) {
+	public Cadastro(Integer id, String nome, String funcao) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.job = job;
+		this.funcao = funcao;
 	}
 
 	public Integer getId() {
@@ -63,12 +63,12 @@ public class Cadastro implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getJob() {
-		return job;
+	public String getFuncao() {
+		return funcao;
 	}
 
-	public void setJob(String job) {
-		this.job = job;
+	public void setFuncao(String funcao) {
+		this.funcao = funcao;
 	}
 
 	public List<Pessoa> getPessoas() {
@@ -95,6 +95,6 @@ public class Cadastro implements Serializable{
 		Cadastro other = (Cadastro) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
 	
 }

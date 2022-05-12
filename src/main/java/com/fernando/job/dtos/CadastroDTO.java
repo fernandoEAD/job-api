@@ -10,16 +10,16 @@ public class CadastroDTO implements Serializable {
 	
 	private Integer id;
 	private String nome;
-	private String job;
+	private String funcao;
 	public CadastroDTO() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public CadastroDTO(Cadastro obj) {
 		super();
 		this.id = obj.getId();
 		this.nome = obj.getNome();
-		this.job = obj.getJob();
+		this.funcao = obj.getFuncao();
 	}
 	public Integer getId() {
 		return id;
@@ -33,10 +33,10 @@ public class CadastroDTO implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getJob() {
-		return job;
+	public String getFuncao() {
+		return funcao;
 	}
-	public void setJob(String job) {
-		this.job = job;
+	public void setFuncao(String funcao) {
+		this.funcao = funcao;
 	}
 }
