@@ -25,11 +25,11 @@ public class Cadastro implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@NotEmpty(message = "Campo NOME é requerido")
+	@NotEmpty(message = "Campo NOME é requerido!")
 	@Length(min = 3, max = 100, message = "O campo NOME deve ter entre 3 e 100 caracteres")
 	private String nome;
 	
-	@NotEmpty(message = "Campo FUNÇÃO é requerido")
+	@NotEmpty(message = "Campo FUNÇÃO é requerido!")
 	@Length(min = 3, max = 200, message = "O campo FUNÇÃO deve ter entre 3 e 200 caracteres")
 	private String funcao;
 	
