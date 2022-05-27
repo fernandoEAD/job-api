@@ -38,9 +38,8 @@ public class PessoaResource {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<PessoaDTO>> findAll(
-			@RequestParam(value = "cadastro", defaultValue = "0") Integer id_cad) {
-		List<Pessoa> list = service.findAll(id_cad);
+	public ResponseEntity<List<PessoaDTO>> findAll() {
+		List<Pessoa> list = service.findAll();
 		List<PessoaDTO> listDTO = list.stream().map(obj -> new PessoaDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
@@ -51,6 +50,12 @@ public class PessoaResource {
 		return ResponseEntity.ok().body(newObj);
 	}
 	
+	@PutMapping(value = "/aproved/{id}")
+	public ResponseEntity<Pessoa> updateIsAproved(@PathVariable Integer id, @RequestBody boolean isAproved) {
+		Pessoa newObj = service.updateIsAproved(id, isAproved);
+		return ResponseEntity.ok().body(newObj);
+	}
+	
 	@PatchMapping(value = "/{id}")
 	public ResponseEntity<Pessoa> updatePatch(@PathVariable Integer id, @RequestBody Pessoa obj) {
 		Pessoa newObj = service.update(id, obj);
@@ -58,9 +63,8 @@ public class PessoaResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Pessoa> create(@RequestParam(value = "cadastro", defaultValue = "0") Integer id_cad,
-			@RequestBody Pessoa obj) {
-		Pessoa newObj = service.create(id_cad, obj);
+	public ResponseEntity<Pessoa> create(@RequestBody Pessoa obj) {
+		Pessoa newObj = service.create(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/pessoas/{id}").buildAndExpand(newObj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}

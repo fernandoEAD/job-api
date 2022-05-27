@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fernando.job.domain.Cadastro;
 import com.fernando.job.domain.Pessoa;
 import com.fernando.job.repositories.PessoaRepository;
 import com.fernando.job.service.exceptions.ObjectNotFoundException;
@@ -17,8 +16,7 @@ public class PessoaService {
 	@Autowired
 	private PessoaRepository repository;
 
-	@Autowired
-	private CadastroService cadastroService;
+
 
 	public Pessoa findById(Integer id) {
 		Optional<Pessoa> obj = repository.findById(id);
@@ -26,14 +24,19 @@ public class PessoaService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Pessoa.class.getName()));
 	}
 
-	public List<Pessoa> findAll(Integer id_cad) {
-		cadastroService.findById(id_cad);
-		return repository.findAllByCadastro(id_cad);
+	public List<Pessoa> findAll() {
+		return repository.findAll();
 	}
 
 	public Pessoa update(Integer id, Pessoa obj) {
 		Pessoa newObj = findById(id);
 		updateData(newObj, obj);
+		return repository.save(newObj);
+	}
+	
+	public Pessoa updateIsAproved(Integer id, boolean isAproved) {
+		Pessoa newObj = findById(id);
+		newObj.setIsAproved(isAproved);
 		return repository.save(newObj);
 	}
 
@@ -45,14 +48,16 @@ public class PessoaService {
 		newObj.setTelefone(obj.getTelefone());
 		newObj.setEscolaridade(obj.getEscolaridade());
 		newObj.setFuncao(obj.getFuncao());
-		newObj.setCompetencia(obj.getCompetencia());
-		
+		newObj.setCompetencia1(obj.getCompetencia1());
+		newObj.setDescricao1(obj.getCompetencia1());
+		newObj.setProf1(obj.getCompetencia1());
+		newObj.setCompetencia2(obj.getCompetencia2());
+		newObj.setDescricao2(obj.getDescricao2());
+		newObj.setProf2(obj.getProf2());
 	}
 
-	public Pessoa create(Integer id_cad, Pessoa obj) {
+	public Pessoa create(Pessoa obj) {
 		obj.setId(null);
-		Cadastro cad = cadastroService.findById(id_cad);
-		obj.setCadastro(cad);
 		return repository.save(obj);
 	}
 
